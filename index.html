@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="images/forest.jpg" as="image">
+    <link rel="preload" href="images/ocean.jpg" as="image">
+    <link rel="preload" href="images/sunset.jpg" as="image">
+    <link rel="preload" href="images/night.jpg" as="image">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Molengo&family=Quicksand:wght@300..700&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Short+Stack&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="subheader">
+        <div id="setTime">
+            <h3>Remind me to drink water every...</h3>
+            <select name="time" id="time">
+                <option value="10">10 Minutes</option>
+                <option value="15">15 Minutes</option>
+                <option value="20">20 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="45">45 Minutes</option>
+                <option value="60">60 Minutes</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="timerDiv">
+        <div id="timer">
+
+        </div>
+    </div>
+
+    <div class="customizations">
+        <div class="custom-box"> 
+            <p>Choose Theme</p>
+            <div class="theme-buttons">
+                <button data-theme="ocean">Ocean</button>
+                <button data-theme="forest">Forest</button>
+                <button data-theme="night">Night</button>
+                <button data-theme="sunset">Sunset</button>
+            </div>
+        </div>
+        <div class="custom-box">
+            <p>Choose Sound</p>
+            <div class="sound-buttons">
+                <button data-sound="drop">Drop</button>
+                <button data-sound="chime">Chime</button>
+                <button data-sound="beep">Beep</button>
+                <button data-sound="bell">Bell</button>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

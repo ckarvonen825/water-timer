@@ -101,6 +101,7 @@ select:hover{
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 200px;
 }
 
 .custom-box{
@@ -175,7 +176,7 @@ button.active{
 #timerCircle {
   stroke: var(--color-white);
   fill: none;
-  stroke-width: 15px;
+  stroke-width: 12px;
   stroke-dasharray: 471;
   stroke-dashoffset: 0;
   stroke-linecap: round;
@@ -191,7 +192,7 @@ button.active{
 
 #sipCounter {
   fill: var(--color-white);
-  font-size: smaller;
+  font-size: x-small;
   font-family: 'Short Stack', sans-serif;
   transform: translate(0%, -16%);
 }
@@ -265,5 +266,11 @@ select:disabled{
 
 #selectSoundAlert.visible p {
   animation: wobble 0.4s ease 3;
+}
+
+footer{
+  height: 200px;
+  width: 100%;
+  background-color: var(--color-mid);
 }
 

@@ -13,6 +13,9 @@ const startStop = document.querySelector("#button");
 const dropdown = document.querySelector("#time");
 const sipCounter = document.querySelector("#sipCounter");
 
+
+let milliseconds;
+let targetTime;
 const circum = 471;
 let seconds;
 let remainingSeconds;
@@ -50,6 +53,10 @@ function setSound(event) {
 function start() {
   seconds = dropdown.value * 60;
   remainingSeconds = seconds;
+  milliseconds = remainingSeconds * 1000;
+  targetTime = Date.now() + milliseconds;
+  
+  remainingSeconds = Math.ceil(milliseconds / 1000);
 
   if(selectedSound === null){
     selectSoundAlert.classList.add("visible");
@@ -74,17 +81,20 @@ function startTimer(){
   dropdown.disabled = true;
 
     interval = setInterval(function() {
-      remainingSeconds--;
+      const now = Date.now();
+      const remainingMilliseconds = targetTime - now;
+      remainingSeconds = Math.ceil(remainingMilliseconds / 1000);
+
       timerCircle.style.strokeDashoffset = circum - (remainingSeconds / seconds * circum);
-      if(remainingSeconds === 0){
+      if(remainingSeconds <= 0){
         new Audio('sounds/' + selectedSound + '.wav').play();
-        remainingSeconds = seconds;
+        targetTime = Date.now() + (seconds * 1000);
         sips++;
         sipCounter.innerHTML = "Sips: " + sips;
       }
       
-      let displayMinutes = Math.floor(remainingSeconds / 60);
-      let displaySeconds = remainingSeconds % 60;
+      let displayMinutes = Math.floor(Math.max(0, remainingSeconds) / 60);
+      let displaySeconds = Math.max(0, remainingSeconds) % 60;
       timerText.textContent = String(displayMinutes).padStart(2, '0') + ":" + String(displaySeconds).padStart(2, '0');
       console.log(String(displayMinutes).padStart(2, '0') + ":" + String(displaySeconds).padStart(2, '0'));
 

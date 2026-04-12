@@ -101,7 +101,7 @@ select:hover{
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 200px;
+  
 }
 
 .custom-box{
@@ -268,9 +268,9 @@ select:disabled{
   animation: wobble 0.4s ease 3;
 }
 
-footer{
+/* footer{
   height: 200px;
   width: 100%;
   background-color: var(--color-mid);
-}
+} */
 

@@ -1,4 +1,5 @@
 Water Timer
+
 A cozy water timer app to keep you hydrated
 
 Demo:

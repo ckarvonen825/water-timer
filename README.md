@@ -6,9 +6,13 @@ Demo:
 https://ckarvonen825.github.io/water-timer/
 
 Features:
+
 4 Super Cute Themes: Ocean, Forest, Night, and Sunset
+
 Custom Sounds: Choose a notification sound that pleases your ears
+
 Sip Tracker: Keep a tally of your hydration throughout your session
+
 Versatile Time Options: Plenty of different time intervals to suit your hydration needs
 
 Built With:

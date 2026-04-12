@@ -1,20 +1,30 @@
 const images = [
   'images/forest.jpg',
-  'images/ocean.jpg', 
+  'images/ocean.jpg',
   'images/sunset.jpg',
   'images/night.jpg'
 ];
 
 const buttons = document.querySelectorAll(".theme-buttons button");
 const soundButtons = document.querySelectorAll(".sound-buttons button");
+const timerCircle = document.querySelector("#timerCircle");
+const timerText = document.querySelector("#timerText");
+const startStop = document.querySelector("#button");
+const dropdown = document.querySelector("#time");
+const sipCounter = document.querySelector("#sipCounter");
+
+const circum = 471;
+let seconds;
+let remainingSeconds;
+let interval;
+let sips = 0;
 
 images.forEach(src => {
   const img = new Image();
   img.src = src;
-  img.onload = () => console.log(src + ' preloaded!');
 });
 
-let selectedSound = "chime";
+let selectedSound = null;
 
 function setTheme(event){
   let theme = event.target.dataset.theme;
@@ -35,10 +45,85 @@ function setSound(event) {
   new Audio('sounds/' + selectedSound + '.wav').play();
 }
 
+
+
+function start() {
+  seconds = dropdown.value * 60;
+  remainingSeconds = seconds;
+
+  if(selectedSound === null){
+    selectSoundAlert.classList.add("visible");
+
+  setTimeout(function() {
+    selectSoundAlert.classList.remove("visible");
+  }, 2000);
+  return;
+  }
+
+  if(startStop.innerHTML === "Start"){
+    startTimer();
+
+  }else if (startStop.innerHTML === "Stop"){
+    stopTimer();
+  }
+
+}
+
+function startTimer(){
+  startStop.innerHTML = "Stop";
+  dropdown.disabled = true;
+
+    interval = setInterval(function() {
+      remainingSeconds--;
+      timerCircle.style.strokeDashoffset = circum - (remainingSeconds / seconds * circum);
+      if(remainingSeconds === 0){
+        new Audio('sounds/' + selectedSound + '.wav').play();
+        remainingSeconds = seconds;
+        sips++;
+        sipCounter.innerHTML = "Sips: " + sips;
+      }
+      
+      let displayMinutes = Math.floor(remainingSeconds / 60);
+      let displaySeconds = remainingSeconds % 60;
+      timerText.textContent = String(displayMinutes).padStart(2, '0') + ":" + String(displaySeconds).padStart(2, '0');
+      console.log(String(displayMinutes).padStart(2, '0') + ":" + String(displaySeconds).padStart(2, '0'));
+
+
+    }, 1000);
+}
+
+function stopTimer(){
+  startStop.innerHTML = "Start";
+    dropdown.disabled = false;
+    sips = 0;
+    clearInterval(interval);
+    seconds = 0;
+    remainingSeconds = 0;
+    timerCircle.style.strokeDashoffset = 0;
+    timerText.textContent = `${dropdown.value}:00`;
+    sipCounter.innerHTML = "Sips: " + sips;
+
+}
+
+
 buttons.forEach(function(button) {
-  button.addEventListener('click', setTheme);
+  button.addEventListener("click", setTheme);
 });
 
 soundButtons.forEach(function(soundButton) {
-  soundButton.addEventListener('click', setSound);
+  soundButton.addEventListener("click", setSound);
 });
+
+dropdown.addEventListener("change", function() {
+  timerText.textContent = `${dropdown.value}:00`;
+});
+
+startStop.addEventListener("click", start);
+  
+
+
+
+
+
+
+

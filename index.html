@@ -12,12 +12,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Molengo&family=Quicksand:wght@300..700&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Short+Stack&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.ico">
 </head>
 <body>
     <div id="subheader">
         <div id="setTime">
             <h3>Remind me to drink water every...</h3>
             <select name="time" id="time">
+                <option value="0.1">Couple Seconds (test)</option>
                 <option value="10">10 Minutes</option>
                 <option value="15">15 Minutes</option>
                 <option value="20">20 Minutes</option>
@@ -31,6 +33,7 @@
     <div id="timerDiv">
         <div id="timer">
             <svg viewBox="0 0 200 200">
+                <text id="sipCounter" x="100" y="100" text-anchor="middle" dominant-baseline="middle">Sips: 0</text>
                 <circle id="baseCircle" cx="100" cy="100" r="75"></circle>
                 <circle id="timerCircle" cx="100" cy="100" r="75"></circle>
                 <text id="timerText" x="100" y="100" text-anchor="middle" dominant-baseline="middle">00:00</text>
@@ -46,7 +49,7 @@
             <p>Choose Theme</p>
             <div class="theme-buttons">
                 <button data-theme="ocean">Ocean</button>
-                <button data-theme="forest">Forest</button>
+                <button data-theme="forest" class="active">Forest</button>
                 <button data-theme="night">Night</button>
                 <button data-theme="sunset">Sunset</button>
             </div>
@@ -61,6 +64,11 @@
             </div>
         </div>
     </div>
+    <div id="selectSoundAlert">
+        <p>Choose a sound first!</p>
+    </div>
+
+
     <script src="scripts.js"></script>
 </body>
 </html>

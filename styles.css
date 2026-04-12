@@ -4,7 +4,7 @@
   padding: 0;
 }
 
- .theme-forest{
+ :root{
   --bg-image: url('images/forest.jpg');
   --color-white: #F9F9ED;
   --color-light: #7eb147;
@@ -34,7 +34,7 @@
   --color-dark: #131117;
 }
 
-:root{
+.theme-night{
   --bg-image: url('images/night.jpg');
   --color-white: #F0FAFE;
   --color-light: #34716c;
@@ -97,8 +97,6 @@ select:hover{
   cursor: pointer;
 }
 
-
-
 .customizations{
   width: 100%;
   display: flex;
@@ -106,8 +104,13 @@ select:hover{
 }
 
 .custom-box{
+  display: flex;
+  flex-direction: column;
   margin-left: 250px;
   margin-right: 250px;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
   padding: 20px;
   background-color: var(--color-mid);
   border-radius: 15px;
@@ -182,8 +185,15 @@ button.active{
 
 #timerText {
   fill: var(--color-white);
-  font-size: 24px;
+  font-size: x-large;
   font-family: 'Short Stack', sans-serif;
+}
+
+#sipCounter {
+  fill: var(--color-white);
+  font-size: smaller;
+  font-family: 'Short Stack', sans-serif;
+  transform: translate(0%, -16%);
 }
 
 #button{
@@ -203,3 +213,57 @@ button.active{
   transform: translate(-50%, 150%) translateY(2px);
   background-color: var(--color-lightShadow) !important;
 }
+
+#selectSoundAlert{
+  display: flex;
+  position: fixed;
+  width: 220px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  bottom: 325px;
+  right: 0%;
+  margin-right: 225px;
+  border-radius: 15px;
+}
+
+
+#selectSoundAlert::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--color-white);
+}
+
+#selectSoundAlert {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#selectSoundAlert.visible {
+  opacity: 1;
+  font-weight: bold;
+}
+
+select:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@keyframes wobble {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+#selectSoundAlert.visible p {
+  animation: wobble 0.4s ease 3;
+}
+

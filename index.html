@@ -15,6 +15,13 @@
     <link rel="icon" href="images/favicon.ico">
 </head>
 <body>
+
+    <div id="mobile-warning" class="hidden">
+        <div class="warning-content">
+            <p>⚠️ This app was built for desktop browsers. On mobile, background timers may be unpredictable.</p>
+            <button id="understandBtn">I Understand</button>
+        </div>
+    </div>  
     <!-- <div>
         <a href="https://www.buymeacoffee.com/ckarvonen" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" style="height: 60px !important;width: 217px !important;" ></a>
     </div> -->
@@ -22,7 +29,7 @@
         <div id="setTime">
             <h3>Remind me to drink water every...</h3>
             <select name="time" id="time">
-                <option value="0.1">Couple Seconds (test)</option>
+                <!-- <option value="0.1">Couple Seconds (test)</option> -->
                 <option value="10">10 Minutes</option>
                 <option value="15">15 Minutes</option>
                 <option value="20">20 Minutes</option>

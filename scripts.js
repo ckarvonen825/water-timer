@@ -12,6 +12,10 @@ const timerText = document.querySelector("#timerText");
 const startStop = document.querySelector("#button");
 const dropdown = document.querySelector("#time");
 const sipCounter = document.querySelector("#sipCounter");
+const understandBtn = document.querySelector("understandBtn");
+
+const silentLoop = new Audio('sounds/silence.mp3');
+silentLoop.loop = true;
 
 
 let milliseconds;
@@ -21,13 +25,16 @@ let seconds;
 let remainingSeconds;
 let interval;
 let sips = 0;
+let selectedSound = null;
 
-images.forEach(src => {
+images.forEach(src => { //preloading images
   const img = new Image();
   img.src = src;
 });
 
-let selectedSound = null;
+function dismissWarning() {
+    document.getElementById('mobile-warning').classList.add('hidden');
+}
 
 function setTheme(event){
   let theme = event.target.dataset.theme;
@@ -65,6 +72,11 @@ function requestPermission(){
 
 
 function start() {
+
+  silentLoop.play().catch(error => {
+        console.log("Silent loop failed. This usually happens if the user hasn't clicked anything yet.", error);
+  });
+
   requestPermission();
 
   seconds = dropdown.value * 60;
@@ -119,7 +131,10 @@ function startTimer(){
 }
 
 function stopTimer(){
-  startStop.innerHTML = "Start";
+    silentLoop.pause();
+    silentLoop.currentTime = 0;
+
+    startStop.innerHTML = "Start";
     dropdown.disabled = false;
     sips = 0;
     clearInterval(interval);
@@ -128,6 +143,8 @@ function stopTimer(){
     timerCircle.style.strokeDashoffset = 0;
     timerText.textContent = `${dropdown.value}:00`;
     sipCounter.innerHTML = "Sips: " + sips;
+
+    
 
 }
 
@@ -145,6 +162,8 @@ dropdown.addEventListener("change", function() {
 });
 
 startStop.addEventListener("click", start);
+
+understandBtn.addEventListener("click", dismissWarning);
   
 
 

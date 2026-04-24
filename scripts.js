@@ -48,9 +48,25 @@ function setSound(event) {
   new Audio('sounds/' + selectedSound + '.wav').play();
 }
 
+function showNotification(){
+  const notification = new Notification("New desktop notification", {
+    body: "Time for a sip of water!\nSips: " + sips
+    //icon: 
+  });
+}
+
+function requestPermission(){
+  if(Notification.permission === "granted"){
+    return;
+  }else if(Notification.permission !== "denied"){
+  Notification.requestPermission();
+  }
+}
 
 
 function start() {
+  requestPermission();
+
   seconds = dropdown.value * 60;
   remainingSeconds = seconds;
   milliseconds = remainingSeconds * 1000;
@@ -83,13 +99,13 @@ function startTimer(){
     interval = setInterval(function() {
       const now = Date.now();
       const remainingMilliseconds = targetTime - now;
-      remainingSeconds = Math.ceil(remainingMilliseconds / 1000);
-
+      remainingSeconds = Math.max(0, Math.ceil(remainingMilliseconds / 1000)); //doesnt let it go bellow 0
       timerCircle.style.strokeDashoffset = circum - (remainingSeconds / seconds * circum);
       if(remainingSeconds <= 0){
+        sips++;
+        showNotification();
         new Audio('sounds/' + selectedSound + '.wav').play();
         targetTime = Date.now() + (seconds * 1000);
-        sips++;
         sipCounter.innerHTML = "Sips: " + sips;
       }
       

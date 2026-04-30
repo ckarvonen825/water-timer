@@ -56,7 +56,7 @@ function setSound(event) {
 }
 
 function showNotification(){
-  const notification = new Notification("New desktop notification", {
+  const notification = new Notification("Hello!", {
     body: "Time for a sip of water!\nSips: " + sips
     //icon: 
   });
@@ -74,7 +74,7 @@ function requestPermission(){
 function start() {
 
   silentLoop.play().catch(error => {
-        console.log("Silent loop failed. This usually happens if the user hasn't clicked anything yet.", error);
+        console.log("Silent loop failed.", error);
   });
 
   requestPermission();
